@@ -18,7 +18,12 @@
 	let currentPath = [root.name];
 </script>
 
-<button on:click={() => (tree = root)}>reset</button>
+<button
+	on:click={() => {
+		tree = root;
+		currentPath = [root.name];
+	}}>reset</button
+>
 
 <BreadCrumbs
 	crumbs={currentPath}
@@ -37,7 +42,8 @@
 		{tree}
 		onClick={(node, path) => {
 			tree = node;
-			currentPath = path;
+			let allButLast = currentPath.slice(0, currentPath.length - 1);
+			currentPath = allButLast.concat(path);
 		}}
 	/>
 </div>
