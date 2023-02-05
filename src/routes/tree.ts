@@ -1,9 +1,9 @@
 export class TreeNode {
+	name: string;
 	value: number;
-	name?: string;
 	children: TreeNode[];
 
-	constructor(name: string | undefined = undefined, value: number, children: TreeNode[] = []) {
+	constructor(name: string, value: number, children: TreeNode[] = []) {
 		this.name = name;
 		this.value = value;
 		this.children = children;
@@ -21,16 +21,16 @@ export class TreeNode {
 		return count;
 	}
 
-	toHtmlList(): string {
-		let html = `<li>${this.name || this.value}`;
-		if (this.children.length > 0) {
-			html += '<ul>';
+	findNode(path: string[]): TreeNode | undefined {
+		if (path.length === 0) {
+			return this;
+		} else {
 			for (const child of this.children) {
-				html += child.toHtmlList();
+				if (child.name === path[0]) {
+					return child.findNode(path.slice(1));
+				}
 			}
-			html += '</ul>';
+			return undefined;
 		}
-		html += '</li>';
-		return html;
 	}
 }
