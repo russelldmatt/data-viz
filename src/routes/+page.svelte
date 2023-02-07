@@ -40,6 +40,7 @@
 <div style="width: 700px;">
 	<TreeDrilldown
 		{tree}
+		root={true}
 		onClick={(node, path) => {
 			tree = node;
 			let allButLast = currentPath.slice(0, currentPath.length - 1);

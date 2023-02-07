@@ -9,18 +9,6 @@ export class TreeNode {
 		this.children = children;
 	}
 
-	countLeafNodes(): number {
-		let count = 0;
-		if (this.children.length === 0) {
-			count = 1;
-		} else {
-			for (const child of this.children) {
-				count += child.countLeafNodes();
-			}
-		}
-		return count;
-	}
-
 	findNode(path: string[]): TreeNode | undefined {
 		if (path.length === 0) {
 			return this;
